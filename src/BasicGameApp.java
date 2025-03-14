@@ -96,6 +96,7 @@ public class BasicGameApp implements Runnable, KeyListener {
       //calls the move( ) code in the objects
 		astro.move();
 
+
 	}
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
@@ -165,6 +166,36 @@ public class BasicGameApp implements Runnable, KeyListener {
 		System.out.println("pressed?");
 		System.out.println(e.getKeyChar());
 		System.out.println(e.getKeyCode());
+
+
+		if(e.getKeyCode() == 38){
+			System.out.println("going up");
+
+astro.up = true;
+astro.down = false;
+
+		}
+
+		if(e.getKeyCode() == 39){
+			System.out.println("diagonal");
+			astro.up = true;
+			astro.down = false;
+		}
+		if(e.getKeyCode() == 40){
+			System.out.println("going down");
+		astro.up = true;
+		astro.down = false;
+		}
+		if(e.getKeyCode() == 37){
+			System.out.println("goin left");
+astro.dx = -5;
+astro.dy = 0;
+		}
+		if(e.getKeyCode()== 39){
+			System.out.println("goin right");
+astro.dx = 5;
+astro.dy = 0;
+		}
 	}
 
 	@Override
