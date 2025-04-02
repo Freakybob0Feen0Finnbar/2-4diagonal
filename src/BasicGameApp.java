@@ -26,121 +26,120 @@ import javax.swing.JPanel;
 //Step 1: Add KeyListener to the implements
 public class BasicGameApp implements Runnable, KeyListener {
 
-   //Variable Definition Section
-   //Declare the variables used in the program 
-   //You can set their initial values too
-   
-   //Sets the width and height of the program window
+	//Variable Definition Section
+	//Declare the variables used in the program
+	//You can set their initial values too
+
+	//Sets the width and height of the program window
 	final int WIDTH = 1000;
 	final int HEIGHT = 700;
 
-   //Declare the variables needed for the graphics
+	//Declare the variables needed for the graphics
 	public JFrame frame;
 	public Canvas canvas;
-   public JPanel panel;
-   
+	public JPanel panel;
+
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
 
-   //Declare the objects used in the program
-   //These are things that are made up of more than one variable type
+	//Declare the objects used in the program
+	//These are things that are made up of more than one variable type
 	private Astronaut astro;
 
 
-   // Main method definition
-   // This is the code that runs first and automatically
+	// Main method definition
+	// This is the code that runs first and automatically
 	public static void main(String[] args) {
 		BasicGameApp ex = new BasicGameApp();   //creates a new instance of the game
 		new Thread(ex).start();                 //creates a threads & starts up the code in the run( ) method  
 	}
 
 
-   // Constructor Method
-   // This has the same name as the class
-   // This section is the setup portion of the program
-   // Initialize your variables and construct your program objects here.
+	// Constructor Method
+	// This has the same name as the class
+	// This section is the setup portion of the program
+	// Initialize your variables and construct your program objects here.
 	public BasicGameApp() {
-      
-      setUpGraphics();
-       
-      //variable and objects
-      //create (construct) the objects needed for the game and load up 
+
+		setUpGraphics();
+
+		//variable and objects
+		//create (construct) the objects needed for the game and load up
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
-		astro = new Astronaut(10,100);
+		astro = new Astronaut(10, 100);
 
 
 	}// BasicGameApp()
 
-   
+
 //*******************************************************************************
 //User Method Section
 //
 // put your code to do things here.
 
-   // main thread
-   // this is the code that plays the game after you set things up
+	// main thread
+	// this is the code that plays the game after you set things up
 	public void run() {
 
-      //for the moment we will loop things forever.
+		//for the moment we will loop things forever.
 		while (true) {
 
-         moveThings();  //move all the game objects
-         render();  // paint the graphics
-         pause(20); // sleep for 10 ms
+			moveThings();  //move all the game objects
+			render();  // paint the graphics
+			pause(20); // sleep for 10 ms
 		}
 	}
 
 
-	public void moveThings()
-	{
-      //calls the move( ) code in the objects
+	public void moveThings() {
+		//calls the move( ) code in the objects
 		astro.move();
 
 
 	}
-	
-   //Pauses or sleeps the computer for the amount specified in milliseconds
-   public void pause(int time ){
-   		//sleep
-			try {
-				Thread.sleep(time);
-			} catch (InterruptedException e) {
 
-			}
-   }
+	//Pauses or sleeps the computer for the amount specified in milliseconds
+	public void pause(int time) {
+		//sleep
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
 
-   //Graphics setup method
-   private void setUpGraphics() {
-      frame = new JFrame("Application Template");   //Create the program window or frame.  Names it.
-   
-      panel = (JPanel) frame.getContentPane();  //sets up a JPanel which is what goes in the frame
-      panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));  //sizes the JPanel
-      panel.setLayout(null);   //set the layout
-   
-      // creates a canvas which is a blank rectangular area of the screen onto which the application can draw
-      // and trap input events (Mouse and Keyboard events)
-      canvas = new Canvas();  
-      canvas.setBounds(0, 0, WIDTH, HEIGHT);
-      canvas.setIgnoreRepaint(true);
+		}
+	}
 
-   //step 2; add KeyListener to canvas as this
-	   canvas.addKeyListener(this);
+	//Graphics setup method
+	private void setUpGraphics() {
+		frame = new JFrame("Application Template");   //Create the program window or frame.  Names it.
 
-      panel.add(canvas);  // adds the canvas to the panel.
-   
-      // frame operations
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //makes the frame close and exit nicely
-      frame.pack();  //adjusts the frame and its contents so the sizes are at their default or larger
-      frame.setResizable(false);   //makes it so the frame cannot be resized
-      frame.setVisible(true);      //IMPORTANT!!!  if the frame is not set to visible it will not appear on the screen!
-      
-      // sets up things so the screen displays images nicely.
-      canvas.createBufferStrategy(2);
-      bufferStrategy = canvas.getBufferStrategy();
-      canvas.requestFocus();
-      System.out.println("DONE graphic setup");
-   
-   }
+		panel = (JPanel) frame.getContentPane();  //sets up a JPanel which is what goes in the frame
+		panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));  //sizes the JPanel
+		panel.setLayout(null);   //set the layout
+
+		// creates a canvas which is a blank rectangular area of the screen onto which the application can draw
+		// and trap input events (Mouse and Keyboard events)
+		canvas = new Canvas();
+		canvas.setBounds(0, 0, WIDTH, HEIGHT);
+		canvas.setIgnoreRepaint(true);
+
+		//step 2; add KeyListener to canvas as this
+		canvas.addKeyListener(this);
+
+		panel.add(canvas);  // adds the canvas to the panel.
+
+		// frame operations
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //makes the frame close and exit nicely
+		frame.pack();  //adjusts the frame and its contents so the sizes are at their default or larger
+		frame.setResizable(false);   //makes it so the frame cannot be resized
+		frame.setVisible(true);      //IMPORTANT!!!  if the frame is not set to visible it will not appear on the screen!
+
+		// sets up things so the screen displays images nicely.
+		canvas.createBufferStrategy(2);
+		bufferStrategy = canvas.getBufferStrategy();
+		canvas.requestFocus();
+		System.out.println("DONE graphic setup");
+
+	}
 
 
 	//paints things on the screen using bufferStrategy
@@ -148,7 +147,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 		g.clearRect(0, 0, WIDTH, HEIGHT);
 
-      //draw the image of the astronaut
+		//draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 
 		g.dispose();
@@ -168,40 +167,53 @@ public class BasicGameApp implements Runnable, KeyListener {
 		System.out.println(e.getKeyCode());
 
 
-		if(e.getKeyCode() == 38){
+		if (e.getKeyCode() == 38) {
 			System.out.println("going up");
 
-astro.up = true;
-astro.down = false;
+			astro.up = true;
+			astro.down = false;
 
 		}
 
-		if(e.getKeyCode() == 39){
+		if (e.getKeyCode() == 39) {
 			System.out.println("diagonal");
 			astro.up = true;
 			astro.down = false;
 		}
-		if(e.getKeyCode() == 40){
+		if (e.getKeyCode() == 40) {
 			System.out.println("going down");
-		astro.up = true;
-		astro.down = false;
+			astro.up = true;
+			astro.down = true;
 		}
-		if(e.getKeyCode() == 37){
+		if (e.getKeyCode() == 37) {
 			System.out.println("goin left");
-astro.dx = -5;
-astro.dy = 0;
+			astro.left = true;
 		}
-		if(e.getKeyCode()== 39){
+		if (e.getKeyCode() == 39) {
 			System.out.println("goin right");
-astro.dx = 5;
-astro.dy = 0;
+			astro.right = true;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		System.out.println("released");
+		System.out.println(e.getKeyChar());
+		System.out.println(e.getKeyCode());
 
+		if (e.getKeyCode() == 38) {
+			astro.up = false;
+		}
+		if(e.getKeyCode() == 40){
+			astro.down = false;
+		}
+		if(e.getKeyCode() == 37){
+			astro.left = false;
+		}
+		if(e.getKeyCode() == 39){
+			astro.right = false;
+		}
+
+		//step 3; add methods keyReleased, keyPressed, and keyTyped
 	}
-
-	//step 3; add methods keyReleased, keyPressed, and keyTyped
 }

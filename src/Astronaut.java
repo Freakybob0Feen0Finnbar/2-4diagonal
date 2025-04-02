@@ -47,9 +47,18 @@ public class Astronaut {
 
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
     public void move() {
-        if(up==true){
+        if (up == true) {
             dy = -5;
         }
+        if (down == true){
+            dy = 5;
+    }
+    if(left == true){
+        dx = -5;
+    }
+    if(right == true){
+        dx = 5;
+    }
         xpos = xpos + dx;
         ypos = ypos + dy;
  
