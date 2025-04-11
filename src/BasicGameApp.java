@@ -108,6 +108,7 @@ public class BasicGameApp implements Runnable, KeyListener {
 for(int y = 0; y< astronautsArray.length; y++){
 	astronautsArray[y].move();
 }
+collisions();
 
 	}
 
@@ -229,5 +230,16 @@ for(int y = 0; y< astronautsArray.length; y++){
 		}
 
 		//step 3; add methods keyReleased, keyPressed, and keyTyped
+	}
+
+	public void collisions(){
+
+		for(int b = 0; b < astronautsArray.length; b++){
+			if(astro.rec.intersects(astronautsArray[b].rec)){
+				System.out.println("crashing");
+			}
+		}
+
+		// add colissions with astro array.
 	}
 }

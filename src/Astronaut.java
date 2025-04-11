@@ -19,6 +19,7 @@ public class Astronaut {
     public boolean down;
     public boolean left;
     public boolean right;
+    public Rectangle rec;
     //a boolean to denote if the hero is alive or dead.
 
 
@@ -42,8 +43,10 @@ public class Astronaut {
         down = false;
         left = false;
         right = false;
+        rec = new Rectangle(xpos, ypos, width, height);
 
     } // constructor
+
 
     //The move method.  Everytime this is run (or "called") the hero's x position and y position change by dx and dy
     public void move() {
@@ -68,6 +71,8 @@ public class Astronaut {
         }
         xpos = xpos + dx;
         ypos = ypos + dy;
+
+        rec = new Rectangle(xpos, ypos, width, height);
 
     }
 }
